@@ -5,10 +5,11 @@
 using namespace std;
 
 
-void merge_arrays(int *a, int s, int e){
+int merge_arrays(int *a, int s, int e){
 
     int mid = s + (e-s)/2;
-
+    int inversionCount = 0;
+    
     int n1 = mid - s + 1;
     int n2 = e - mid;
     
@@ -35,6 +36,9 @@ void merge_arrays(int *a, int s, int e){
             a[k] = y[j];
             j++;
             k++;
+            inversionCount += (n1-i);     // if b[j] < a[i]  the all the elements after a[i] will also be greater than b[j],
+                                          // thus total elements = n1 - i  
+                                          // (0) (1)....(i) till here no change... but from (i+1) (i+2) (i+3) ... (n1) = n1 - i elements would be inverted 
         }
     }
 
@@ -50,19 +54,22 @@ void merge_arrays(int *a, int s, int e){
         k++;
     }
 
+    return inversionCount;
 }
 
-void merge_sort(int *a, int s, int e){
+int merge_sort(int *a, int s, int e){
     
-    if(s>=e) return;            //base case
+    if(s>=e) return 0;            //base case
 
+    int inversionCount = 0;
     int mid = s + (e-s)/2;
 
-    merge_sort(a,s,mid);
-    merge_sort(a,mid+1,e);
+    inversionCount += merge_sort(a,s,mid);
+    inversionCount += merge_sort(a,mid+1,e);
 
-    merge_arrays(a,s,e);
+    inversionCount += merge_arrays(a,s,e);
     
+    return inversionCount;
 }
 
 void solve(){
@@ -70,7 +77,7 @@ void solve(){
     int a[n];
     for(int i = 0; i<n; i++) cin>>a[i];
 
-    merge_sort(a,0,n-1);
+    cout<<"inversion Count = "<<merge_sort(a,0,n-1)<<endl;
 
     cout<<"Sorted array: "<<endl;
     for(int i = 0; i<n; i++) cout<<a[i]<<" ";
