@@ -51,14 +51,14 @@ int partition(vector<int> &a, int s, int e){                    // METHOD 1:
 //     return pivot_index;
 // }
 
-void insertion_sort(vector<int> &a, int s, int e){
+void quick_sort(vector<int> &a, int s, int e){
 
     if(s>=e) return;
 
     int pivot_index = partition(a,s,e);
 
-    insertion_sort(a,s,pivot_index-1);
-    insertion_sort(a,pivot_index+1,e);
+    quick_sort(a,s,pivot_index-1);
+    quick_sort(a,pivot_index+1,e);
 }
 
 void solve(){
@@ -68,7 +68,7 @@ void solve(){
         cin>>a[i];
     }
 
-    insertion_sort(a,0,n-1);
+    quick_sort(a,0,n-1);
 
     cout<<"Sorted array: "<<endl;
     for(int i = 0; i<n; i++){
