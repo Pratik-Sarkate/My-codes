@@ -8,7 +8,7 @@ using namespace std;
 void solve(){
     int n,m,r,c;cin>>n>>m>>r>>c;
     int white = 0, black = 0;
-    vector<vector<char>> a(n,vector<char> (n));
+    vector<vector<char>> a(n,vector<char> (m));
     for(int i = 0; i<n; i++){
         for(int j = 0; j<m; j++){
             cin>>a[i][j];
