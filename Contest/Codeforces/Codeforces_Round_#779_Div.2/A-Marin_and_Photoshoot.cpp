@@ -45,3 +45,36 @@ int main()
     
     return 0;
 }
+
+
+
+
+/*
+
+Approach 2:
+
+void solve(){
+    int n;cin>>n;
+    string s;cin>>s;
+
+    vector<int> pos;
+
+    for(int i = 0; i<n; i++){
+        if(s[i]=='0') pos.push_back(i);
+    }
+
+
+    int cnt = 0;
+
+    for(int i = 1; i<pos.size(); i++){
+        if(pos[i]-pos[i-1] == 1){
+            cnt+=2;
+        }else if(pos[i] - pos[i-1] == 2){
+            cnt++;
+        }
+    }
+
+    cout<<cnt<<endl;
+}
+
+*/
