@@ -20,6 +20,7 @@ void solve(){
         last[s[i-1]-'a'] = i;
     }
     cout<<n-ans[n]<<endl;
+    
 }
 
 int main()
